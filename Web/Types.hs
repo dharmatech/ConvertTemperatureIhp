@@ -6,13 +6,12 @@ import Generated.Types
 
 data WebApplication = WebApplication deriving (Eq, Show)
 
-
 data StaticController 
     = WelcomeAction
-    | PostAction
     deriving (Eq, Show, Data)
 
 data TemperatureController
-    = StartAction
+    = FormAction
+    | ResultAction
     deriving (Eq, Show, Data)
 

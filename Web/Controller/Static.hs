@@ -4,5 +4,3 @@ import Web.View.Static.Welcome
 
 instance Controller StaticController where
     action WelcomeAction = render WelcomeView
-    
-    action PostAction = render WelcomeView
