@@ -7,7 +7,6 @@ import IHP.RouterSupport
 import IHP.FrameworkConfig
 import IHP.Job.Types
 import Web.FrontController
-import Web.Types
 
 instance FrontController RootApplication where
     controllers = [
