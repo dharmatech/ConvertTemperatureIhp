@@ -9,8 +9,15 @@ import IHP.ViewPrelude
 import Generated.Types
 import Application.Helper.View
 
+instance CanRoute TemperatureController where
+    parseRoute' = do
+        let form   = string "/Temperature/Form"   <* endOfInput >> pure FormAction
+        let result = string "/Temperature/Result" <* endOfInput >> pure ResultAction
+        form <|> result
 
-instance AutoRoute TemperatureController 
+instance HasPath TemperatureController where
+    pathTo FormAction   = "/Temperature/Form"
+    pathTo ResultAction = "/Temperature/Result"
 
 data WebApplication = WebApplication deriving (Eq, Show)
 
