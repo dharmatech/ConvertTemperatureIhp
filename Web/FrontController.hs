@@ -20,17 +20,14 @@ data TemperatureController
     deriving (Eq, Show, Data)
 
 instance Controller TemperatureController where
-    action FormAction = respondHtml
+   
+    action FormAction = respondHtml [hsx|
+        <form action={pathTo ResultAction} method="post">
+            <label>Farenheit</label>
+            <input type="text" name="farenheit"/>
+        </form>
+    |]
 
-            [hsx|
-        
-            <form action="/Result" method="post">
-                <label>Farenheit</label>
-                <input type="text" name="farenheit"/>
-            </form>            
-
-        |]
-    
     action ResultAction = 
         let
             farenheit = IHP.ControllerPrelude.param @Float "farenheit"
