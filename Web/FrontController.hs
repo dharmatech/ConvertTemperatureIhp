@@ -9,7 +9,12 @@ import IHP.ViewPrelude
 import Generated.Types
 import Application.Helper.View
 
--- data Temperature = Temperature { val :: Float } deriving (Show)
+data Temperature = Temperature { val :: Float } deriving (Show)
+
+-- renderForm :: Temperature -> Html
+-- renderForm temp = formFor temp [hsx|
+--     abc
+-- |]
 
 instance CanRoute TemperatureController where
     parseRoute' = do
