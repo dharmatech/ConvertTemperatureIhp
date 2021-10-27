@@ -9,6 +9,8 @@ import IHP.ViewPrelude
 import Generated.Types
 import Application.Helper.View
 
+-- data Temperature = Temperature { val :: Float } deriving (Show)
+
 instance CanRoute TemperatureController where
     parseRoute' = do
         let form   = string "/Temperature/Form"   <* endOfInput >> pure FormAction
