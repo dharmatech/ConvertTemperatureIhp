@@ -9,12 +9,18 @@ import IHP.ViewPrelude
 import Generated.Types
 import Application.Helper.View
 
-data Temperature = Temperature { val :: Float } deriving (Show)
+data Temperature = Temperature { 
+    id :: Int, 
+    val :: Float, 
+    meta :: MetaBag 
+} deriving (Show)
 
--- renderForm :: Temperature -> Html
--- renderForm temp = formFor temp [hsx|
---     abc
--- |]
+type instance GetModelName Temperature = "Temperature"
+
+renderForm :: Temperature -> Html
+renderForm temp = formFor temp [hsx|
+    {textField #val}
+|]
 
 instance CanRoute TemperatureController where
     parseRoute' = do
@@ -35,11 +41,14 @@ data TemperatureController
 
 instance Controller TemperatureController where
    
-    action FormAction = respondHtml [hsx|
+    action FormAction = 
+                
+        respondHtml [hsx|
         <form action={pathTo ResultAction} method="post">
             <label>Farenheit</label>
             <input type="text" name="farenheit"/>
         </form>
+
     |]
 
     action ResultAction = 
