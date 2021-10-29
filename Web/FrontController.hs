@@ -41,7 +41,21 @@ data TemperatureController
 
 instance Controller TemperatureController where
    
+    -- action FormAction = 
+                
+    --     respondHtml [hsx|
+    --     <form action={pathTo ResultAction} method="post">
+    --         <label>Farenheit</label>
+    --         <input type="text" name="farenheit"/>
+    --     </form>
+
+    -- |]
+
     action FormAction = 
+
+        let temp = Temperature { id = 0, val = 0.0, meta = def }
+
+        in
                 
         respondHtml [hsx|
         <form action={pathTo ResultAction} method="post">
@@ -49,7 +63,9 @@ instance Controller TemperatureController where
             <input type="text" name="farenheit"/>
         </form>
 
-    |]
+        {renderForm temp}
+
+    |]    
 
     action ResultAction = 
         let
