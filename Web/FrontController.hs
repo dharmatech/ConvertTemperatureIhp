@@ -11,15 +11,15 @@ import Application.Helper.View
 
 data Temperature = Temperature { 
     id :: Int, 
-    val :: Float, 
+    farenheit :: Float, 
     meta :: MetaBag 
 } deriving (Show)
 
 type instance GetModelName Temperature = "Temperature"
 
 renderForm :: Temperature -> Html
-renderForm temp = formFor temp [hsx|
-    {textField #val}
+renderForm temp = formFor' temp "/Temperature/Result" [hsx|
+    {textField #farenheit}
 |]
 
 instance CanRoute TemperatureController where
@@ -53,7 +53,7 @@ instance Controller TemperatureController where
 
     action FormAction = 
 
-        let temp = Temperature { id = 0, val = 0.0, meta = def }
+        let temp = Temperature { id = 0, farenheit = 100.0, meta = def }
 
         in
                 
